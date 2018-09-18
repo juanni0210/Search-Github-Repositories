@@ -1,3 +1,7 @@
+// TODO: there is a pause when user hits research
+//       we can actually display the items whenever 
+//       there is an item available
+
 const inputValue = document.querySelector("#search");
 const searchButton = document.querySelector(".searchBtn");
 

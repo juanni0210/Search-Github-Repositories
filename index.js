@@ -1,6 +1,7 @@
+// DOM elements
 const inputValue = document.querySelector("#search");
 const searchButton = document.querySelector(".searchBtn");
-
+// the sections to display results/favorites
 const results_container = document.querySelector(".results_container");
 const favorites_container = document.querySelector(".favorites_container");
 
@@ -10,15 +11,17 @@ const client_secret = "424bd47fc39785ad474a72c8623581b4b27367bc";
 
 const MAX_RESULTS = 10;
 
+// empty array declarations for displayItems and icons for both sections
 let result_displayItems = [];
 let result_addIcons = [];
 
 let favorite_displayItems = [];
 let favorite_removeIcons = [];
 
+// asynchronous functions to perform api call to fetch search results and tags from github
 const fetchResults = async (input) => {
     const api_call = await fetch(`https://api.github.com/search/repositories?q=${input}+in:name&sort=stars&order=desc?client_id=${client_id}&client_secret=${client_secret}`);
-    
+    // save it as json format
     const data = await api_call.json();
     return { data } 
 }
@@ -30,9 +33,11 @@ const fetchTags = async (appName) => {
     return { data }
 }
 
+// function to call both asynchronous functions and assign callbacks for them
 const fetchData = () => {
+    // get the data as res
     fetchResults(inputValue.value).then((res) => {
-              
+        // 
         for (let i = 0; i < MAX_RESULTS; i++) {
             let displayItem = {};
             
